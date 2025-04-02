@@ -1,6 +1,7 @@
+import { FlatCompat } from "@eslint/eslintrc";
+import checkFilePlugin from "eslint-plugin-check-file";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,11 +13,29 @@ const compat = new FlatCompat({
 const eslintConfig = [
    ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
    {
+      plugins: {
+         "check-file": checkFilePlugin, // ✅ Register Plugin
+      },
       rules: {
          "prefer-arrow-callback": "error",
          "prefer-template": "error",
          "semi": "error",
          "quotes": "error",
+         "check-file/filename-naming-convention": [
+            "error",
+            {
+               "**/*.{ts,tsx}": "KEBAB_CASE",
+            },
+            {
+               "ignoreMiddleExtensions": true,
+            },
+         ],
+         "check-file/folder-naming-convention": [
+            "error",
+            {
+               "src/**": "KEBAB_CASE",
+            },
+         ],
       }
    }
 ];
