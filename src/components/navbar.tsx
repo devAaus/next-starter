@@ -1,12 +1,13 @@
 "use client";
 
-import { Menu, Zap } from "lucide-react";
+import { Menu, Package, Zap } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "./theme-toggle";
 
 export default function Navbar() {
    const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +17,8 @@ export default function Navbar() {
          <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
-               <Zap className="h-6 w-6 text-primary" />
-               <span className="text-xl font-bold">Brand</span>
+               <Package className="h-6 w-6 text-primary" />
+               <span className="text-lg  md:text-xl font-bold">Next.js Starter</span>
             </Link>
 
             {/* Desktop Nav */}
@@ -50,6 +51,8 @@ export default function Navbar() {
                      </div>
                   </SheetContent>
                </Sheet>
+
+               <ThemeToggle />
             </div >
          </div>
       </header>
@@ -77,7 +80,7 @@ const NavLinks = ({ onClick }: NavLinksProps) => {
                <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium hover:text-primary transition-colors ${isActive ? "text-black font-semibold" : "text-muted-foreground"
+                  className={`text-sm font-medium hover:text-primary transition-colors ${isActive ? "text-primary font-semibold" : "text-muted-foreground"
                      }`}
                   onClick={onClick}
                >
