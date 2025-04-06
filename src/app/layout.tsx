@@ -22,7 +22,7 @@ export default function RootLayout({
                href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>" />
          </head>
          <body
-            className={"antialiased"}
+            className="w-screen h-screen antialiased"
          >
             <ThemeProvider
                attribute="class"
@@ -30,8 +30,12 @@ export default function RootLayout({
                enableSystem
                disableTransitionOnChange
             >
-               <Navbar />
-               {children}
+               <div className="w-full h-full flex flex-col">
+                  <Navbar />
+                  <main className="grow mx-auto">
+                     {children}
+                  </main>
+               </div>
             </ThemeProvider>
          </body>
       </html>
